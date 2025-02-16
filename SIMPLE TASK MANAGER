@@ -1,0 +1,33 @@
+// app.js - Simple Task Manager
+
+const fs = require('fs');
+
+const tasks = [];
+
+function addTask(task) {
+    tasks.push({ text: task, completed: false });
+    console.log(`✅ Added: ${task}`);
+}
+
+function listTasks() {
+    console.log("\n📌 Your Tasks:");
+    tasks.forEach((task, index) => {
+        console.log(`${index + 1}. [${task.completed ? '✔' : ' '}] ${task.text}`);
+    });
+}
+
+function completeTask(index) {
+    if (index >= 0 && index < tasks.length) {
+        tasks[index].completed = true;
+        console.log(`✅ Completed: ${tasks[index].text}`);
+    } else {
+        console.log("⚠ Invalid task index.");
+    }
+}
+
+// Example Usage
+addTask("Upload project to GitHub");
+addTask("Learn Node.js Basics");
+listTasks();
+completeTask(0);
+listTasks();
